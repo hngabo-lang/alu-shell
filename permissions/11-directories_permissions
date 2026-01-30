@@ -1,2 +1,2 @@
 #!/bin/bash
-for dir in */ do chmod a+x "$dir" done
+find . -maxdepth 1 -type d -exec chmod a+x {} \\
