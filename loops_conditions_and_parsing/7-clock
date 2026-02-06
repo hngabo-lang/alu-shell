@@ -1,4 +1,4 @@
-#!/usr/bin/bash/env bash
+#!/usr/bin/env bash
 # This script displays the time for 12 hrs and 59 min
 hour=0
 while [ $hour -le 12 ]
