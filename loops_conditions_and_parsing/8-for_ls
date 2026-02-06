@@ -2,8 +2,10 @@
 # This script displays the content of the cirrent dir in list format
 for file in *
 do 
-if [[ "$file" == *-* ]]
-then 
-echo "$file" | cut -d'-' -f2-
-fi
+    if [[ "$file" == *-* ]]
+    then 
+        echo "$file" | cut -d'-' -f2-
+     else
+	echo "$file"
+    fi
 done
