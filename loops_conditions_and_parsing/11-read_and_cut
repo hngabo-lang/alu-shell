@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+This script displays the content of /etc/pswd showing username etc
+while IFS=: read -r username_userid_ _ homedir _
+do 
+echo "$username:$userid:$homedir"
+done < /etc/passwd
