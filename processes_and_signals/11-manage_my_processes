@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # This script manages the manage_my_process daemon
 
-pidfile="/var/run/my_progress.pid"
+pidfile="/var/run/my_process.pid"
 
 start() {
-./manage_my_process &
-echo $! > "$pidfile"
-echo "manage_my_process started"
+    ./manage_my_process &
+    echo $! > "$pidfile"
+    echo "manage_my_process started"
 }
 
 stop() {
