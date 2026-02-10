@@ -1,23 +1,28 @@
 #!/usr/bin/env bash
-# This script creates a pid file and handles multiple signals
+# This script manages a PID file and handles various signals
 
-pidfile="/var/run/myscript.pid"
+# Create PID file
+echo $$ > /var/run/myscript.pid
 
-# creating pid file
-echo $$ > "$pidfile"
-
-## fn to clean up and exit
-cleanup() {
-rm -f "$pidfile"
-    exit
+# Define cleanup function for SIGTERM
+cleanup_sigterm() {
+    echo "I hate the kill command"
+    rm /var/run/myscript.pid
+    exit 0
 }
 
-# Set up signal handlers
-trap "echo 'Y U no love me?!'" SIGINT
-trap "echo 'I hate the kill command'; cleanup" SIGTERM
-trap "cleanup" SIGQUIT
+# Define cleanup function for SIGQUIT
+cleanup_sigquit() {
+    rm /var/run/myscript.pid
+    exit 0
+}
 
-# Main loop
+# Trap signals
+trap 'echo "Y U no love me?!"' SIGINT
+trap cleanup_sigterm SIGTERM
+trap cleanup_sigquit SIGQUIT
+
+# Infinite loop
 while true
 do
     echo "To infinity and beyond"
